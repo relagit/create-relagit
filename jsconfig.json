@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"checkJs": true,
+		"allowJs": true,
+		"noEmit": true,
+		"target": "esnext",
+		"module": "esnext",
+		"allowSyntheticDefaultImports": true,
+		"lib": ["esnext"],
+		"moduleResolution": "node",
+		"resolveJsonModule": true
+	}
+}
