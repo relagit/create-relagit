@@ -3,6 +3,8 @@
 The easiest way to scaffold a new [RelaGit](https://rela.dev) workflow.
 
 ```
+$ pnpm create relagit
+
 Are you ready to scaffold a new RelaGit workflow, TheCommieAxolotl?
 
 ? Where would you like to create your workflow? …
