@@ -1,6 +1,7 @@
 import { exec } from 'child_process';
 import fs from 'fs';
 import path from 'path';
+import { homedir } from 'os';
 
 import pc from '../shared/color.js';
 import { templates } from '../shared/templates.js';
@@ -34,6 +35,20 @@ export default async (/** @type {import('../shared').Context} */ ctx) => {
 				.replace('{{OPT.NAME}}', JSON.stringify(ctx.opt.name))
 				.replace('{{OPT.AUTHOR}}', JSON.stringify(ctx.username))
 		);
+	}
+
+	console.log(`\n${pc.green('Success!')} Now adding workflow to ~/.relagit/external.json\n`);
+
+	try {
+		const home = homedir();
+
+		const external = JSON.parse(fs.readFileSync(`${home}/.relagit/external.json`, 'utf-8'));
+
+		external.push(ctx.opt.location);
+
+		fs.writeFileSync(`${home}/.relagit/external.json`, JSON.stringify(external, null, 2));
+	} catch (error) {
+		console.error(`\n${pc.red('Error!')} Could not add workflow to ~/.relagit/external.json\n`);
 	}
 
 	const { packageManager } = await prompts({
@@ -83,7 +98,4 @@ export default async (/** @type {import('../shared').Context} */ ctx) => {
 	console.log(`cd ${path.relative(ctx.cwd, ctx.opt.location)}`);
 	console.log(`${packageManager}${packageManager === 'npm' ? ' run ' : ' '}dev\n`);
 	console.log('');
-	console.log(
-		'To learn how to install your workflow in RelaGit, visit https://rela.dev/docs/workflows/installing-workflows'
-	);
 };

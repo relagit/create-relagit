@@ -1,6 +1,6 @@
 {
 	"name": "create-relagit",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "The easiest way to scaffold a new RelaGit workflow.",
 	"main": "src/index.js",
 	"bin": {
